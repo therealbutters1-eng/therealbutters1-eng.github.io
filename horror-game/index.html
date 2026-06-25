@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Haunting - Horror Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Game Screen -->
+        <div id="game-screen" class="game-active">
+            <div id="game-canvas"></div>
+            <div id="hud">
+                <div id="health-bar">
+                    <div id="health-fill"></div>
+                </div>
+                <div id="stats">
+                    <span id="health-text">Health: 100</span>
+                    <span id="sanity-text">Sanity: 100</span>
+                </div>
+                <div id="interaction-prompt"></div>
+            </div>
+        </div>
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen-active">
+            <div class="screen-content">
+                <h1>THE HAUNTING</h1>
+                <p class="subtitle">A Horror Experience</p>
+                <p class="description">You wake up in an abandoned mansion with no memory of how you got here. Strange shadows lurk in the darkness. Survive the night.</p>
+                <button id="start-btn" class="btn-primary">START GAME</button>
+                <button id="instructions-btn" class="btn-secondary">INSTRUCTIONS</button>
+            </div>
+        </div>
+
+        <!-- Instructions Screen -->
+        <div id="instructions-screen">
+            <div class="screen-content">
+                <h2>HOW TO PLAY</h2>
+                <div class="instructions-text">
+                    <p><strong>Movement:</strong> Arrow Keys or WASD</p>
+                    <p><strong>Interact:</strong> E key</p>
+                    <p><strong>Run:</strong> SHIFT (drains stamina)</p>
+                    <p><strong>Objective:</strong> Find the exit key and escape before dawn</p>
+                    <p><strong>Avoid:</strong> The Shadow entities that roam the halls</p>
+                    <p><strong>Stay Safe:</strong> Turn on lights and hide in dark corners</p>
+                </div>
+                <button id="back-btn" class="btn-primary">BACK</button>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameover-screen">
+            <div class="screen-content">
+                <h1 id="gameover-title">GAME OVER</h1>
+                <p id="gameover-message"></p>
+                <button id="restart-btn" class="btn-primary">RESTART</button>
+                <button id="menu-btn" class="btn-secondary">MAIN MENU</button>
+            </div>
+        </div>
+
+        <!-- Win Screen -->
+        <div id="win-screen">
+            <div class="screen-content">
+                <h1>YOU ESCAPED!</h1>
+                <p id="win-message">Congratulations! You made it out alive!</p>
+                <button id="restart-btn-win" class="btn-primary">PLAY AGAIN</button>
+                <button id="menu-btn-win" class="btn-secondary">MAIN MENU</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
