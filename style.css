@@ -1,0 +1,327 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: #000;
+    color: #0f0;
+    overflow: hidden;
+}
+
+#game-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background: #000;
+}
+
+/* Screens */
+.screen-active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#start-screen,
+#instructions-screen,
+#gameover-screen,
+#win-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a0000 0%, #000 50%, #1a0a00 100%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+#instructions-screen,
+#gameover-screen,
+#win-screen {
+    display: none;
+}
+
+.screen-content {
+    text-align: center;
+    color: #0f0;
+    text-shadow: 0 0 10px #0f0, 0 0 20px #000;
+    animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 10px #0f0, 0 0 20px #000;
+    }
+    50% {
+        opacity: 0.95;
+        text-shadow: 0 0 5px #0f0, 0 0 10px #000;
+    }
+}
+
+.screen-content h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+}
+
+.screen-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.description {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.instructions-text {
+    text-align: left;
+    display: inline-block;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    line-height: 2;
+    background: rgba(0, 20, 0, 0.5);
+    padding: 30px;
+    border: 2px solid #0f0;
+    border-radius: 5px;
+}
+
+.instructions-text p {
+    margin: 10px 0;
+}
+
+.btn-primary,
+.btn-secondary {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-family: 'Courier New', monospace;
+    border: 2px solid #0f0;
+    background: transparent;
+    color: #0f0;
+    cursor: pointer;
+    margin: 10px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.btn-primary:hover {
+    background: #0f0;
+    color: #000;
+    box-shadow: 0 0 20px #0f0;
+    transform: scale(1.05);
+}
+
+.btn-secondary:hover {
+    background: transparent;
+    color: #0f0;
+    box-shadow: 0 0 10px #0f0;
+}
+
+#gameover-message,
+#win-message {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #f00;
+}
+
+#win-message {
+    color: #0f0;
+}
+
+/* Game Screen */
+#game-screen {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#game-screen.game-active {
+    display: flex;
+}
+
+#game-canvas {
+    width: 100%;
+    height: 100%;
+    background: #0a0a0a;
+    position: relative;
+    overflow: hidden;
+}
+
+/* HUD */
+#hud {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 50;
+    color: #0f0;
+    font-size: 1rem;
+    text-shadow: 0 0 10px #0f0;
+}
+
+#health-bar {
+    width: 200px;
+    height: 20px;
+    border: 2px solid #0f0;
+    background: #000;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+#health-fill {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #0f0, #00ff00);
+    transition: width 0.3s ease;
+}
+
+#stats {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 10px;
+}
+
+#interaction-prompt {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 1rem;
+    color: #0f0;
+    min-height: 20px;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Game Entities */
+.player {
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    background: linear-gradient(180deg, #00ff00, #00aa00);
+    border: 2px solid #0f0;
+    box-shadow: 0 0 10px #0f0;
+}
+
+.entity {
+    position: absolute;
+    width: 40px;
+    height: 50px;
+    background: radial-gradient(circle, rgba(0,0,0,0.5), #000);
+    border: 2px solid #440;
+    animation: shadow-pulse 2s infinite;
+}
+
+@keyframes shadow-pulse {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+    }
+}
+
+.item {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(circle, #ffff00, #ff8800);
+    border-radius: 50%;
+    animation: item-glow 1s infinite;
+}
+
+@keyframes item-glow {
+    0%, 100% {
+        box-shadow: 0 0 10px #ffff00;
+    }
+    50% {
+        box-shadow: 0 0 20px #ffff00;
+    }
+}
+
+.wall {
+    position: absolute;
+    background: #1a1a1a;
+    border: 2px solid #333;
+}
+
+.light-source {
+    position: absolute;
+    background: radial-gradient(circle, rgba(255, 255, 0, 0.3), transparent);
+    border-radius: 50%;
+}
+
+/* Darkness overlay */
+.darkness-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at var(--px, 50%) var(--py, 50%), 
+                                transparent 0%, 
+                                transparent 150px,
+                                rgba(0, 0, 0, 0.8) 400px,
+                                rgba(0, 0, 0, 0.95) 100%);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Animations */
+@keyframes glitch {
+    0% {
+        clip-path: polygon(0 20%, 100% 20%, 100% 25%, 0 25%);
+    }
+    5% {
+        clip-path: polygon(0 60%, 100% 60%, 100% 65%, 0 65%);
+    }
+    10% {
+        clip-path: polygon(0 50%, 100% 50%, 100% 55%, 0 55%);
+    }
+    15% {
+        clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%);
+    }
+    20% {
+        clip-path: polygon(0 0%, 100% 0%, 100% 100%, 0 100%);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .screen-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 10px 30px;
+        font-size: 0.9rem;
+    }
+}
